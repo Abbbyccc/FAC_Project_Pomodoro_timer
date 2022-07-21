@@ -10,10 +10,26 @@
 </head>
 
 <body>
+    <div class="main-contaoner">
+        <div class="type-container">
+            <button>Pomodoro</button>
+            <button>break</button>
+        </div>
+        <div>
+            <p class="time-disply">25:00</p>
+        </div>
+        <div class="action-container">
+            <button onclick="start()" id="start-btn">start</button>
+            <button onclick="pause()" id="pause-btn">pause</button>
+            <button onclick="reset()" id="reset-btn">reset</button>
+        </div>
 
+    </div>
 
 
     <script src="script.js"></script>
+    <script src="test-helpers.js"></script>
+    <script src="test.js"></script>
 </body>
 
 </html>
