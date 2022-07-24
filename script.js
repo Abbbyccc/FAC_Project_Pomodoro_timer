@@ -26,10 +26,6 @@ function timeSetting(event) {
     breakMinutes.innerHTML = sm
 }
 
-// timeSettingBtn.addEventListener('click', function (event) {
-//     event.preventDefault()
-//     resetPomo()
-// })
 
 pomodoroTimer.addEventListener('click', () => {
     resetPomo()
