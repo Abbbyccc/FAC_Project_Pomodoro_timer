@@ -18,7 +18,7 @@ let minutes
 let seconds = 0
 
 pomodoroTimer.addEventListener('click', () => {
-
+    resetPomo()
     timeDisplay.classList.remove('hidden')
     breakTimeDisplay.classList.add('hidden')
 
@@ -39,6 +39,7 @@ pomodoroTimer.addEventListener('click', () => {
 })
 
 breakTimer.addEventListener('click', () => {
+    resetbreak()
     timeDisplay.classList.add('hidden')
     breakTimeDisplay.classList.remove('hidden')
 
