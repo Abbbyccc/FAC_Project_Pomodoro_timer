@@ -12,14 +12,16 @@
 <body>
     <div class="main-contaoner">
         <div class="type-container">
-            <button>Pomodoro</button>
-            <button>break</button>
+            <button id="pomodoro-timer" class="pomodoro-clicked">Pomodoro</button>
+            <button id="break-timer">break</button>
         </div>
         <div>
-            <p class="time-disply">25:00</p>
+            <p class="time-disply" id="time-display"><span id="time-minutes">25</span>:<span id="seconds">00</span></p>
+            <p class="break-disply hidden" id="break-time-display"><span id="break-minutes">05</span>:00</p>
         </div>
+
         <div class="action-container">
-            <button onclick="start()" id="start-btn">start</button>
+            <button id="start-btn">start</button>
             <button onclick="pause()" id="pause-btn">pause</button>
             <button onclick="reset()" id="reset-btn">reset</button>
         </div>
