@@ -6,12 +6,24 @@ const breakTimer = document.querySelector('#break-timer')
 const startBtn = document.querySelector('#start-btn')
 const resetBtn = document.querySelector('#reset-btn')
 
-const pomodoroSetting = document.querySelector('#pomodoro-setting')
-const breakSetting = document.querySelector('#break-setting')
+const timeSettingBtn = document.querySelector('#time-setting')
+// const breakSetting = document.querySelector('#break-setting')
 
-const pomodoroSettingform = document.querySelector('#time-form')
-const breakSettingform = document.querySelector('#break-time-form')
+// const pomodoroSettingform = document.querySelector('#time-form')
+// const breakSettingform = document.querySelector('#break-time-form')
 
+
+timeSettingBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    settingTime = document.forms["time-form"].timers;
+    settingBreakTime = document.forms["time-form"]['break-timer'];
+    const breakMinutes = document.querySelector('#break-minutes')
+    const startMinutes = document.querySelector('#time-minutes')
+    let bn = settingTime.value < 10 ? '0' + settingTime.value : settingTime.value
+    let sm = settingBreakTime.value < 10 ? '0' + settingBreakTime.value : settingBreakTime.value
+    startMinutes.innerHTML = bn
+    breakMinutes.innerHTML = sm
+})
 
 let timer = null
 let minutes
@@ -22,40 +34,15 @@ pomodoroTimer.addEventListener('click', () => {
     timeDisplay.classList.remove('hidden')
     breakTimeDisplay.classList.add('hidden')
 
-    breakSettingform.classList.add('hidden')
-    pomodoroSettingform.classList.remove('hidden')
-
-    let startMinutes = document.querySelector('#time-minutes')
-    pomodoroSetting.addEventListener('click', (event) => {
-        event.preventDefault()
-        settingTime = document.forms["time-form"].timers;
-        minutes = Number(settingTime.value)
-        startMinutes.innerHTML = minutes
-        seconds = 0
-    })
-
     startBtn.setAttribute('onclick', 'pomodoro()')
     resetBtn.setAttribute('onclick', 'resetPomo()')
 })
 
 breakTimer.addEventListener('click', () => {
+
     resetbreak()
     timeDisplay.classList.add('hidden')
     breakTimeDisplay.classList.remove('hidden')
-
-    breakSettingform.classList.remove('hidden')
-    pomodoroSettingform.classList.add('hidden')
-
-    pomodoroTimer.classList.remove('pomodoro-clicked')
-    breakTimer.classList.add('break-clicked')
-    const breakMinutes = document.querySelector('#break-minutes')
-    breakSetting.addEventListener('click', (event) => {
-        event.preventDefault()
-        settingTime = document.forms["break-time-form"]['break-timer'];
-        minutes = Number(settingTime.value)
-        breakMinutes.innerHTML = minutes
-        seconds = 0
-    })
 
     startBtn.setAttribute('onclick', 'breakTime()')
     resetBtn.setAttribute('onclick', 'resetbreak()')
@@ -124,7 +111,9 @@ function pause() {
 
 function resetPomo() {
     clearInterval(timer)
-    minutes = 25
+    timeSettingBtn.click()
+    let startMinutes = document.querySelector('#time-minutes')
+    minutes = parseInt(startMinutes.innerHTML)
     seconds = 0
     let m = minutes < 10 ? '0' + minutes : minutes
     let s = seconds < 10 ? '0' + seconds : seconds
@@ -135,7 +124,9 @@ function resetPomo() {
 
 function resetbreak() {
     clearInterval(timer)
-    minutes = 5
+    timeSettingBtn.click()
+    const breakMinutes = document.querySelector('#break-minutes')
+    minutes = parseInt(breakMinutes.innerHTML)
     seconds = 0
     let m = minutes < 10 ? '0' + minutes : minutes
     let s = seconds < 10 ? '0' + seconds : seconds
@@ -143,4 +134,6 @@ function resetbreak() {
     timer = null
     breakTimer.click()
 }
+
+
 
