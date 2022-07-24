@@ -7,13 +7,14 @@ const startBtn = document.querySelector('#start-btn')
 const resetBtn = document.querySelector('#reset-btn')
 
 const timeSettingBtn = document.querySelector('#time-setting')
-// const breakSetting = document.querySelector('#break-setting')
-
-// const pomodoroSettingform = document.querySelector('#time-form')
-// const breakSettingform = document.querySelector('#break-time-form')
 
 
-timeSettingBtn.addEventListener('click', (event) => {
+let timer = null
+let minutes
+let seconds = 0
+
+
+function timeSetting(event) {
     event.preventDefault()
     settingTime = document.forms["time-form"].timers;
     settingBreakTime = document.forms["time-form"]['break-timer'];
@@ -23,23 +24,25 @@ timeSettingBtn.addEventListener('click', (event) => {
     let sm = settingBreakTime.value < 10 ? '0' + settingBreakTime.value : settingBreakTime.value
     startMinutes.innerHTML = bn
     breakMinutes.innerHTML = sm
-})
+}
 
-let timer = null
-let minutes
-let seconds = 0
+// timeSettingBtn.addEventListener('click', function (event) {
+//     event.preventDefault()
+//     resetPomo()
+// })
 
 pomodoroTimer.addEventListener('click', () => {
     resetPomo()
+
     timeDisplay.classList.remove('hidden')
     breakTimeDisplay.classList.add('hidden')
 
     startBtn.setAttribute('onclick', 'pomodoro()')
-    resetBtn.setAttribute('onclick', 'resetPomo()')
+    resetBtn.setAttribute('onclick', 'resetPomo(event)')
+
 })
 
 breakTimer.addEventListener('click', () => {
-
     resetbreak()
     timeDisplay.classList.add('hidden')
     breakTimeDisplay.classList.remove('hidden')
@@ -111,7 +114,7 @@ function pause() {
 
 function resetPomo() {
     clearInterval(timer)
-    timeSettingBtn.click()
+    timeSetting(event)
     let startMinutes = document.querySelector('#time-minutes')
     minutes = parseInt(startMinutes.innerHTML)
     seconds = 0
@@ -124,7 +127,7 @@ function resetPomo() {
 
 function resetbreak() {
     clearInterval(timer)
-    timeSettingBtn.click()
+    timeSetting(event)
     const breakMinutes = document.querySelector('#break-minutes')
     minutes = parseInt(breakMinutes.innerHTML)
     seconds = 0
@@ -134,6 +137,3 @@ function resetbreak() {
     timer = null
     breakTimer.click()
 }
-
-
-
