@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <title>Pomodoro Timer</title>
 </head>
 
@@ -15,7 +18,7 @@
             <button id="pomodoro-timer" class="pomodoro-clicked">Pomodoro</button>
             <button id="break-timer">break</button>
         </div>
-        <div>
+        <div class="display-container">
             <p class="time-disply" id="time-display"><span id="time-minutes">25</span>:<span id="time-seconds">00</span>
             </p>
             <p class="break-disply hidden" id="break-time-display"><span id="break-minutes">05</span>:<span
@@ -45,7 +48,7 @@
             </form>
             <form action="sumbmit" id="break-time-form" class="hidden">
                 <label for="">Break Time Setting</label>
-                <select id="break-timer-setting" name="break-timer" >
+                <select id="break-timer-setting" name="break-timer">
                     <option value="5">5mins</option>
                     <option value="10">10mins</option>
                     <option value="15">15mins</option>
