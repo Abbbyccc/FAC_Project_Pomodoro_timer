@@ -12,18 +12,6 @@ let timer = null
 let minutes
 let seconds = 0
 
-function timeSetting(event) {
-    event.preventDefault()
-    settingTime = document.forms["time-form"].timers;
-    settingBreakTime = document.forms["time-form"]['break-timer'];
-    const startMinutes = document.querySelector('#time-minutes')
-    const breakMinutes = document.querySelector('#break-minutes')
-    let bm = settingTime.value < 10 ? '0' + settingTime.value : settingTime.value
-    let sm = settingBreakTime.value < 10 ? '0' + settingBreakTime.value : settingBreakTime.value
-    startMinutes.innerHTML = bm
-    breakMinutes.innerHTML = sm
-}
-
 pomodoroTimer.addEventListener('click', () => {
     resetPomo()
     timeDisplay.classList.remove('hidden')
@@ -43,6 +31,18 @@ breakTimer.addEventListener('click', () => {
 })
 
 pomodoroTimer.click()
+
+function timeSetting(event) {
+    event.preventDefault()
+    settingTime = document.forms["time-form"].timers;
+    settingBreakTime = document.forms["time-form"]['break-timer'];
+    const startMinutes = document.querySelector('#time-minutes')
+    const breakMinutes = document.querySelector('#break-minutes')
+    let bm = settingTime.value < 10 ? '0' + settingTime.value : settingTime.value
+    let sm = settingBreakTime.value < 10 ? '0' + settingBreakTime.value : settingBreakTime.value
+    startMinutes.innerHTML = bm
+    breakMinutes.innerHTML = sm
+}
 
 function pomodoro() {
     const audio = new Audio('src/click_sound.wav')
