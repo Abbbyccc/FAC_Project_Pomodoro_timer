@@ -34,6 +34,8 @@ pomodoroTimer.click()
 
 function timeSetting(event) {
     event.preventDefault()
+    const audio = new Audio('src/click_sound.wav')
+    audio.play()
     settingTime = document.forms["time-form"].timers;
     settingBreakTime = document.forms["time-form"]['break-timer'];
     const startMinutes = document.querySelector('#time-minutes')
