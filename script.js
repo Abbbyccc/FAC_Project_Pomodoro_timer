@@ -8,34 +8,29 @@ const resetBtn = document.querySelector('#reset-btn')
 
 const timeSettingBtn = document.querySelector('#time-setting')
 
-
 let timer = null
 let minutes
 let seconds = 0
-
 
 function timeSetting(event) {
     event.preventDefault()
     settingTime = document.forms["time-form"].timers;
     settingBreakTime = document.forms["time-form"]['break-timer'];
-    const breakMinutes = document.querySelector('#break-minutes')
     const startMinutes = document.querySelector('#time-minutes')
-    let bn = settingTime.value < 10 ? '0' + settingTime.value : settingTime.value
+    const breakMinutes = document.querySelector('#break-minutes')
+    let bm = settingTime.value < 10 ? '0' + settingTime.value : settingTime.value
     let sm = settingBreakTime.value < 10 ? '0' + settingBreakTime.value : settingBreakTime.value
-    startMinutes.innerHTML = bn
+    startMinutes.innerHTML = bm
     breakMinutes.innerHTML = sm
 }
 
-
 pomodoroTimer.addEventListener('click', () => {
     resetPomo()
-
     timeDisplay.classList.remove('hidden')
     breakTimeDisplay.classList.add('hidden')
 
     startBtn.setAttribute('onclick', 'pomodoro()')
     resetBtn.setAttribute('onclick', 'resetPomo(event)')
-
 })
 
 breakTimer.addEventListener('click', () => {
@@ -50,6 +45,8 @@ breakTimer.addEventListener('click', () => {
 pomodoroTimer.click()
 
 function pomodoro() {
+    const audio = new Audio('src/click_sound.wav')
+    audio.play()
     if (timer !== null) {
         return
     }
@@ -61,7 +58,7 @@ function pomodoro() {
                 minutes--
             }
             if (minutes == 0 && seconds == -1) {
-                const audio = new Audio('alarming.m4r')
+                const audio = new Audio('src/alarming.m4r')
                 audio.play()
                 setTimeout(function () { alert("Good Job! Have some rest"); }, 500);
                 breakTimer.click()
@@ -77,6 +74,8 @@ function pomodoro() {
 }
 
 function breakTime() {
+    const audio = new Audio('src/click_sound.wav')
+    audio.play()
     if (timer !== null) {
         return
     }
@@ -88,7 +87,7 @@ function breakTime() {
                 minutes--
             }
             if (minutes == 0 && seconds == -1) {
-                const audio = new Audio('alarming.m4r')
+                const audio = new Audio('src/alarming.m4r')
                 audio.play()
                 setTimeout(function () { alert("Let's go back to work!"); }, 500);
                 pomodoroTimer.click()
@@ -104,6 +103,8 @@ function breakTime() {
 }
 
 function pause() {
+    const audio = new Audio('src/click_off.wav')
+    audio.play()
     clearInterval(timer)
     timer = null
 }
